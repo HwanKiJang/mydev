@@ -1,9 +1,18 @@
-const title = document.querySelector("div.hello:first-child h1");
+const loginForm = document.querySelector("#login-form ");
+const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
-console.log(title);
+const HIDDEN_CLASSNAME = "hidden";
 
-function handleTitleClick(){
-    title.style.color = "blue";
+function onLoginSubmit(event){
+    event.preventDefault();
+    loginForm.classList.add(HIDDEN_CLASSNAME);
+    const username = loginInput.value;
+    localStorage.setItem('username',username)
+    greeting.innerText = `Hello ${username}`;
+    greeting.classList.remove(HIDDEN_CLASSNAME)
+    
+    
 }
 
-title.addEventListener("click",handleTitleClick);
+loginForm.addEventListener("submit",onLoginSubmit)
